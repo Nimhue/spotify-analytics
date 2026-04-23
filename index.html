@@ -1166,33 +1166,33 @@ silver_df = (
     <div id="chart-mood"></div>
   </div>
 
-  <!-- Chart 4: BPM vs Streams scatter -->
+  <!-- Chart 4: Metrics -->
   <div class="chart-card">
     <h4>Silver Table -> cleaned_tracks</h4>
     <div class="chart-title">Key Metrics at a Glance</div>
     <div class="metric-grid" id="metrics-grid">
       <div class="metric-card">
-        <div class="metric-value" style="color: var(--spotify-green);">952</div>
-        <div class="metric-label">Total Tracks</div>
+        <div class="metric-value" style="color: var(--spotify-green);">346</div>
+        <div class="metric-label">Tracks Analyzed</div>
       </div>
       <div class="metric-card">
-        <div class="metric-value" style="color: var(--spotify-accent-blue);">489</div>
-        <div class="metric-label">Unique Artists</div>
+        <div class="metric-value" style="color: var(--spotify-accent-blue);">6</div>
+        <div class="metric-label">Audio Features</div>
       </div>
       <div class="metric-card">
-        <div class="metric-value" style="color: var(--spotify-accent-pink);">66.5</div>
+        <div class="metric-value" style="color: var(--spotify-accent-pink);">64.9</div>
         <div class="metric-label">Avg Danceability</div>
       </div>
       <div class="metric-card">
-        <div class="metric-value" style="color: var(--spotify-accent-orange);">122</div>
-        <div class="metric-label">Avg BPM</div>
+        <div class="metric-value" style="color: var(--spotify-accent-orange);">-5.45</div>
+        <div class="metric-label">Avg Loudness (dB)</div>
       </div>
       <div class="metric-card">
-        <div class="metric-value" style="color: var(--spotify-accent-purple);">51.4</div>
+        <div class="metric-value" style="color: var(--spotify-accent-purple);">46.7</div>
         <div class="metric-label">Avg Valence</div>
       </div>
       <div class="metric-card">
-        <div class="metric-value" style="color: var(--spotify-green-dim);">64.3</div>
+        <div class="metric-value" style="color: var(--spotify-green-dim);">74.0</div>
         <div class="metric-label">Avg Energy</div>
       </div>
     </div>
@@ -1222,15 +1222,15 @@ silver_df = (
 
   <h3>3. The collaboration multiplier</h3>
   <p>
-    Tracks with 2+ artists average 1.4× more streams than solo tracks. This isn't
+    Tracks with 2+ artists average 1.4x more streams than solo tracks. This isn't
     just about combined fanbases, collabs tend to score higher on energy,
     suggesting they're engineered for playlists and virality.
   </p>
 
   <h3>4. Energy and loudness are nearly the same thing</h3>
   <p>
-    The correlation between energy and loudness is typically around 0.78, one of the
-    strongest in the dataset. This tells us Spotify's "energy" metric is heavily influenced
+    The correlation between energy and loudness is 0.52 in the dataset, one of the
+    strongest in the matrix. This tells us Spotify's "energy" metric is noticeably influenced
     by production volume, not just tempo or intensity of arrangement.
   </p>
 
@@ -1294,7 +1294,10 @@ silver_df = (
 
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer class="article-footer">
-  <p>Built with  data - Project #1 in the Data Engineering Series</p>
+  <p>Built with data - Project #1 in the Data Engineering Series</p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.6;">
+    Correlations & metrics computed from 346 tracks in the TidyTuesday Spotify Songs dataset (rfordatascience/tidytuesday)
+  </p>
 </footer>
 
 <script>
@@ -1355,12 +1358,12 @@ silver_df = (
 (function() {
   const features = ['Dance', 'Energy', 'Valence', 'Speech', 'Acoustic', 'Loud'];
   const matrix = [
-    [1.00,  0.18, 0.43, 0.12, -0.35,  0.14],
-    [0.18,  1.00, 0.16, 0.16, -0.68,  0.78],
-    [0.43,  0.16, 1.00, 0.05, -0.14,  0.03],
-    [0.12,  0.16, 0.05, 1.00, -0.09,  0.07],
-    [-0.35,-0.68,-0.14,-0.09,  1.00, -0.52],
-    [0.14,  0.78, 0.03, 0.07, -0.52,  1.00],
+    [1.00, -0.03, 0.35, 0.02, 0.06, -0.04],
+    [-0.03, 1.00, 0.11,-0.06,-0.44,  0.52],
+    [0.35,  0.11, 1.00, 0.06, 0.05,  0.14],
+    [0.02, -0.06, 0.06, 1.00, 0.09, -0.11],
+    [0.06, -0.44, 0.05, 0.09, 1.00, -0.17],
+    [-0.04, 0.52, 0.14,-0.11,-0.17,  1.00],
   ];
   const container = document.getElementById('chart-heatmap');
 
@@ -1405,9 +1408,9 @@ silver_df = (
 // ═══════════════════ MOOD CHART ═══════════════════
 (function() {
   const data = [
-    { era: "2010–2014", euphoric: 28, chill: 18, intense: 22, melancholy: 15, neutral: 17 },
-    { era: "2015–2019", euphoric: 24, chill: 20, intense: 24, melancholy: 18, neutral: 14 },
-    { era: "2020–2025", euphoric: 21, chill: 22, intense: 26, melancholy: 20, neutral: 11 },
+    { era: "2010-2014", euphoric: 22, chill: 4, intense: 30, melancholy: 2, neutral: 42 },
+    { era: "2015-2019", euphoric: 21, chill: 3, intense: 31, melancholy: 1, neutral: 44 },
+    { era: "2020-2025", euphoric: 23, chill: 3, intense: 29, melancholy: 1, neutral: 44 },
   ];
   const moods = [
     { key: 'euphoric',   label: 'Euphoric',    color: 'var(--spotify-green)' },
