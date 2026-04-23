@@ -7,7 +7,7 @@ A hands-on, step-by-step guide to building a complete analytics pipeline: ingest
 
 ## Live Demo
 
-[View the article](https://Nimhue.github.io/spotify-analytics/)
+[View the article](https://nimhue.github.io/spotify-analytics/)
 
 ## What's Inside
 
